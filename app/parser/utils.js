@@ -2,9 +2,9 @@ import moment from 'moment';
 import fs from 'fs-extra';
 
 export const timestampConverter = (unixtime) => {
-  moment.locale('ko');
+  moment.locale('ko-KR');
   let date = moment(new Date(unixtime * 1000));
-  return date.format('YYYY년 M월 D일 dddd A h:m');
+  return date.format('YYYY-MM-DD dddd A h:m');
 };
 
 export const tistoryImageTagConverter = (tistoryTag) => {

@@ -2,8 +2,8 @@ import { timestampConverter } from './utils';
 
 const COMMENT_SEPARATOR = "---";
 export const parseComment = (comment) => {
-  let content = comment.content[0];
-  content = content.replace(/\r/g, '');
+  let content = comment.content.$text;
+  content = content.replace(/^ /gm,'');
   return content + '\n\n' + commentFooter(comment);
 };
 
@@ -20,12 +20,18 @@ export const parseCommentList = (comments) => {
 };
 
 export const commentFooter = (comment) => {
-  let author = comment.commenter[0].name;
-  let homepage = comment.commenter[0].homepage;
+  let author = comment.commenter.name;
+  let homepage = comment.commenter.homepage;
 
   if (homepage) {
-    return `- [${author}](${homepage}) ${timestampConverter(comment.written)}\n`;
+    return `- [${author}](${homepage}) at ${timestampConverter(comment.written)}\n`;
   } else {
     return author;
   }
 };
+
+export default {
+  parseComment,
+  parseCommentList,
+  commentFooter
+}

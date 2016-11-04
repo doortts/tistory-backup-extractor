@@ -19,7 +19,7 @@
 
 아무쪼록 좋은 결과 있기를 바라겠습니다.
 
-- [Genie](http://jinself.tistory.com) 2014년 3월 7일 금요일 오전 5:15
+- [Genie](http://jinself.tistory.com) at 2014-03-07 금요일 오전 5:15
 
 ---
 
@@ -30,12 +30,11 @@
 
 : )
 
-쥐메일로 메일주세요.
 뵙고 식사대접해 드리고 싶습니다.
 
 
 
-- [doortts](http://blog.doortts.com) 2014년 4월 22일 화요일 오후 10:42
+- [doortts](http://blog.doortts.com) at 2014-04-22 화요일 오후 10:42
 
 ---
 
@@ -61,4 +60,4 @@
 
 Les Miserables...
 
-- [Genie](http://jinself.tistory.com) 2014년 5월 1일 목요일 오전 2:32
+- [Genie](http://jinself.tistory.com) at 2014-05-01 목요일 오전 2:32

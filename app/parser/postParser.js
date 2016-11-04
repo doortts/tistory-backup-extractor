@@ -3,12 +3,12 @@ import { tistoryImageTagConverter } from '../parser/utils';
 
 export const createHeader = (post) => {
   let header = {
-    id: parseInt(post.id[0]),
+    id: parseInt(post.id),
     slogan: post.$.slogan,
-    title: post.title[0],
-    created: parseInt(post.published[0] || post.created[0]),
-    category: post.category[0],
-    visibility: post.visibility[0]
+    title: post.title,
+    created: parseInt(post.published || post.created),
+    category: post.category,
+    visibility: post.visibility
   };
 
   return matter.stringify('', header).trim();
@@ -19,3 +19,9 @@ export const replaceTistoryCustomImageTag = (post) => {
     return tistoryImageTagConverter(a);
   });
 };
+
+
+export default {
+  createHeader,
+  replaceTistoryCustomImageTag
+}

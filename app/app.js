@@ -1,22 +1,27 @@
 import fs from 'fs';
-import xml2js from 'xml2js';
+import XmlStream from 'xml-stream';
 import toMarkdown from 'to-markdown';
 import striptags from 'striptags';
 
-var parser = new xml2js.Parser();
-fs.readFile('./ti.xml', function (err, data) {
-  if (err) {
-    console.log(err);
+import postParser from './parser/postParser';
+import commentParser from './parser/commentParser';
+
+var count = 0;
+const readable = fs.createReadStream('./ti.xml');
+var xml = new XmlStream(readable);
+
+xml.preserve('content', true);
+xml.collect('comment');
+xml.on('endElement: post', function (post) {
+  count++;
+  if (count > 282) {
+    console.log(postParser.createHeader(post));
+    console.log(post.title);
+    console.log("===")
+    console.log(striptags(toMarkdown(post.content.$text)));
+    console.log("#### comments")
+    console.log(commentParser.parseCommentList(post.comment));
+    // console.log(striptags(toMarkdown(post.content)));
+    process.exit();
   }
-  var now = Date.now();
-  parser.parseString(data, function (err, result) {
-    let post = result.blog.post;
-    let n = 276;
-    console.log(Object.keys(post[n]));
-    console.log((post[n].attachment[0]));
-    // console.log(JSON.stringify(post[n]));
-    // console.log(striptags(toMarkdown(post[n].content[0])));
-    console.log(result.blog.post.length, ' Done');
-    console.log((Date.now() - now) / 1000);
-  });
 });

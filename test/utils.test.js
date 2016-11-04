@@ -18,7 +18,7 @@ describe('utils', () => {
     let dateString = timestampConverter(timestamp);
 
     // Then
-    expect(dateString).to.equal('2014년 3월 7일 금요일 오전 5:15');
+    expect(dateString).to.equal('2014-03-07 금요일 오전 5:15');
   });
 
   it('tistoryImageTagConverter', () => {
@@ -35,8 +35,8 @@ describe('utils', () => {
 
   it('attachmentWriter', () => {
     // Given
-    let filename = attachement.label[0];
-    let base64Content = attachement.content[0];
+    let filename = attachement.label;
+    let base64Content = attachement.content;
     let baseDir = "./test/resource/";
     let filePathName = path.join(baseDir, filename);
 
