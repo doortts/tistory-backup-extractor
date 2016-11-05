@@ -9,15 +9,23 @@ export const timestampConverter = unixtime => {
 
 export const tistoryImageTagConverter = tistoryTag => {
   const attachmentDir = './attachments/';
-  let splited = tistoryTag.split(" ");
+  let treatAsImage = "";
   let filename;
-  splited.forEach(str => {
+
+  tistoryTag.split(" ").forEach(str => {
     if (str.indexOf("filename=") !== -1) {
       filename = str.split("\"")[1];
     }
+    if (isImage(str)) {
+      treatAsImage = "!";
+    }
   });
-
-  return `![${filename}](${attachmentDir}${filename})`;
+  return `${treatAsImage}[${filename}](${attachmentDir}${filename})`;
+  
+  /// private function
+  function isImage(str) {
+    return str.indexOf("filemime=") !== -1 && str.indexOf("image") !== -1;
+  }
 };
 
 export const attachmentWriter = (filename, base64Content) => {

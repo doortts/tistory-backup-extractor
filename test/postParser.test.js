@@ -19,7 +19,7 @@ describe('postParser', () => {
 
   it('replaceTistoryCustomImageTag - simple ', () => {
     //Given
-    let actualString = "감자나라 \n[## abc filename=\"potato.png\" ##]고구마입니다 \n";
+    let actualString = "감자나라 \n[##_1C|cfile30.uf.11613F345148691C3095BD.png|width=\"665\" height=\"361\" filename=\"potato.png\" filemime=\"image/jpeg\"|_##]고구마입니다 \n";
 
     //When
     let parsed = replaceTistoryCustomImageTag(actualString);

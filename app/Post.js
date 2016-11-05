@@ -50,7 +50,7 @@ class Post {
     detail += ' | ' + this.getOriginalPageUrl();
     return detail + '\n\n';
   }
-  
+
   getOriginalPageUrl(){
     return `[원본](${config.tistoryUrl}/${this.post.id})`;
   }
@@ -75,7 +75,6 @@ class Post {
     this.attachmentList.forEach(attachment => {
       listString += `- [${attachment.name}](${attachment.url})\n`
     });
-    console.log("list", listString);
     return listString;
   }
 

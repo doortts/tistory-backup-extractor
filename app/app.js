@@ -9,14 +9,21 @@ var xml = new XmlStream(readable);
 xml.preserve('content', true);
 xml.collect('comment');
 xml.collect('attachment');
+
+console.time('time');
+
 xml.on('endElement: post', function (post) {
+  let out = new Post(post);
+  out.writeToFile();
+  process.stdout.write(".");
   count++;
-  if (count === 277) {
-    let out = new Post(post);
-    out.writeToFile();
-  }
 });
 
 xml.on('error', function(message) {
   console.log('Parsing as ' + (encoding || 'auto') + ' failed: ' + message);
+});
+
+xml.on('end', (arg) => {
+  console.log('\nTotal: ', count);
+  console.timeEnd('time');
 });
