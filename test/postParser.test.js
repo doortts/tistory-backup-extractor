@@ -5,7 +5,7 @@ import { createHeader, replaceTistoryCustomImageTag } from '../app/parser/postPa
 import post from './resource/post-01';
 
 
-describe('Post', () => {
+describe('postParser', () => {
   it('Header', () => {
     //Given
     let expectedString = fs.readFileSync(path.join(__dirname, './resource/post-header.md')).toString().trim();

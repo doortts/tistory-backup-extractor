@@ -1,5 +1,5 @@
 import matter from 'gray-matter';
-import { tistoryImageTagConverter } from '../parser/utils';
+import { tistoryImageTagConverter, timestampConverter } from '../parser/utils';
 
 export const createHeader = (post) => {
   let header = {
@@ -14,12 +14,11 @@ export const createHeader = (post) => {
   return matter.stringify('', header).trim();
 };
 
-export const replaceTistoryCustomImageTag = (post) => {
-  return post.replace(/\[##(.*?)##]/g, a => {
+export const replaceTistoryCustomImageTag = (content) => {
+  return content.replace(/\[##(.*?)##]/g, a => {
     return tistoryImageTagConverter(a);
   });
 };
-
 
 export default {
   createHeader,

@@ -16,4 +16,4 @@
 
 아무쪼록 좋은 결과 있기를 바라겠습니다.
 
-- [Genie](http://jinself.tistory.com) at 2014-03-07 금요일 오전 5:15
+ [Genie](http://jinself.tistory.com) | 2014-03-07 금요일 오전 5:15

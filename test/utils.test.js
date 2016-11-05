@@ -10,17 +10,6 @@ import comment from './resource/comment-01';
 import attachement from './resource/attchment.png.js';
 
 describe('utils', () => {
-  it('timestampConverter', () => {
-    // Given
-    let timestamp = comment[0].written;
-
-    // When
-    let dateString = timestampConverter(timestamp);
-
-    // Then
-    expect(dateString).to.equal('2014-03-07 금요일 오전 5:15');
-  });
-
   it('tistoryImageTagConverter', () => {
     // Given
     let tistoryTag = fs.readFileSync(path.join(__dirname, './resource/tistory-image-tag.md')).toString().trim();

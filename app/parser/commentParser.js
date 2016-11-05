@@ -10,7 +10,7 @@ export const parseComment = (comment) => {
 export const parseCommentList = (comments) => {
   let commentList = "";
   comments.forEach(comment => {
-    commentList += "\n" + COMMENT_SEPARATOR + "\n\n";
+    commentList += "\n\n" + COMMENT_SEPARATOR + "\n\n";
     commentList += parseComment(comment);
     if(comment.comment) {
       commentList += parseCommentList(comment.comment);
@@ -24,14 +24,12 @@ export const commentFooter = (comment) => {
   let homepage = comment.commenter.homepage;
 
   if (homepage) {
-    return `- [${author}](${homepage}) at ${timestampConverter(comment.written)}\n`;
+    return ` [${author}](${homepage}) | ${timestampConverter(comment.written)}\n`;
   } else {
-    return author;
+    return ` ${author} | ${timestampConverter(comment.written)}\n`;
   }
 };
 
 export default {
-  parseComment,
-  parseCommentList,
-  commentFooter
+  parseCommentList
 }

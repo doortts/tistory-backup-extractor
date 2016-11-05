@@ -22,7 +22,7 @@ describe('Comment', () => {
     let footer = commentFooter(comment[0]);
 
     //Then
-    expect(footer).to.equal('- [Genie](http://jinself.tistory.com) at 2014-03-07 금요일 오전 5:15\n');
+    expect(footer).to.equal(' [Genie](http://jinself.tistory.com) | 2014-03-07 금요일 오전 5:15\n');
   });
 
   it('parse comments list', () => {
