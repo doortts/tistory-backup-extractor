@@ -22,3 +22,7 @@ export const tistoryImageTagConverter = (tistoryTag) => {
 export const attachmentWriter = (filename, base64Content) => {
   fs.outputFileSync(filename, new Buffer(base64Content, 'base64'));
 };
+
+export const lpadZero = (str, n) => (
+    str.length < n ? lpadZero("0" + str, n) : str
+);

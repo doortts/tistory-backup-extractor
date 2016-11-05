@@ -1,20 +1,23 @@
 import toMarkdown from 'to-markdown';
 import striptags from 'striptags';
+import moment from 'moment';
 import postParser from './parser/postParser';
 import commentParser from './parser/commentParser';
-import { timestampConverter } from './parser/utils';
+import { timestampConverter, lpadZero } from './parser/utils';
 
 class Post {
   constructor(postJson) {
     this.post = postJson;
   }
 
-  getTitle() {
-    return this.post.title;
+  getTitleLine() {
+    return this.post.title + "\n===\n";
   }
 
-  getTitleLine() {
-    return this.getTitle() + "\n===\n";
+  getSuggestedFilename(){
+    moment.locale('ko-KR');
+    let date = moment(new Date((this.post.published || this.post.created) * 1000));
+    return `${lpadZero(this.post.id, 5)}-${date.format('YYYYMMDD')}-${this.post.$.slogan}`;
   }
 
   getBody() {

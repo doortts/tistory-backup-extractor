@@ -2,11 +2,10 @@ import { expect } from 'chai';
 import fs from 'fs-extra';
 import path from 'path';
 import {
-    timestampConverter,
     tistoryImageTagConverter,
-    attachmentWriter
+    attachmentWriter,
+    lpadZero
 } from '../app/parser/utils';
-import comment from './resource/comment-01';
 import attachement from './resource/attchment.png.js';
 
 describe('utils', () => {
@@ -39,6 +38,17 @@ describe('utils', () => {
     // Clean up
     // fs.removeSync(filePathName);
   });
+
+  it('lpadZero', () => {
+    // Given
+    let numStr = '12';
+
+    // When
+    let parsed = lpadZero(numStr, 4);
+
+    // Then
+    expect(parsed).to.equal('0012');
+  })
 
 });
 

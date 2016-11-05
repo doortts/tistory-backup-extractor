@@ -1,4 +1,6 @@
 import { expect } from 'chai';
+import fs from 'fs';
+import path from 'path';
 
 import postJson from './resource/post-02';
 import Post from '../app/Post';
@@ -21,15 +23,27 @@ describe('Post', () => {
 
   });
 
+  it('getSuggestedFilename', () => {
+    // Given
+    let post = new Post(postJson);
+
+    // When
+    let parsed = post.getSuggestedFilename();
+
+    // Then
+    expect(parsed).to.equal('00205-20111024-기간한정-자바스크립트-학습모임-Octoberskyjs');
+  });
+
   it('doc', () => {
     // Given
     var post = new Post(postJson);
+    let expected = fs.readFileSync(path.join(__dirname, './resource/post-02-parsed.md')).toString();
 
     // When
     let parsed = post.doc();
 
     // Then
-    expect(parsed).to.equal('2014-03-07 금요일 오전 5:15');
+    expect(parsed).to.equal(expected);
   });
 });
 
