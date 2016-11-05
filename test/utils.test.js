@@ -4,7 +4,8 @@ import path from 'path';
 import {
     tistoryImageTagConverter,
     attachmentWriter,
-    lpadZero
+    lpadZero,
+    getTistoryServerFileUrl
 } from '../app/parser/utils';
 import attachement from './resource/attchment.png.js';
 
@@ -36,7 +37,7 @@ describe('utils', () => {
     expect(fs.readFileSync(filePathName).toString('base64')).to.equal(base64Content);
 
     // Clean up
-    // fs.removeSync(filePathName);
+    fs.removeSync(filePathName);
   });
 
   it('lpadZero', () => {
@@ -48,7 +49,17 @@ describe('utils', () => {
 
     // Then
     expect(parsed).to.equal('0012');
-  })
+  });
 
+  it('getTistoryUrl', () => {
+    // Given
+    let remoteFileName = 'cfile22.uf.252C1E4D514867F5135B59.png';
+
+    // When
+    let parsed = getTistoryServerFileUrl(remoteFileName);
+
+    // Then
+    expect(parsed).to.equal('http://cfile22.uf.tistory.com/attach/252C1E4D514867F5135B59');
+  })
 });
 

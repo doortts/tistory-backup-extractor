@@ -1,17 +1,17 @@
 import { timestampConverter } from './utils';
 
-const COMMENT_SEPARATOR = "---";
+const COMMENT_SEPARATOR = "--";
 export const parseComment = (comment) => {
   let content = comment.content.$text;
   content = content.replace(/^ /gm,'');
-  return content + '\n\n' + commentFooter(comment);
+  return '\n' + content + '\n\n' + commentFooter(comment);
 };
 
 export const parseCommentList = (comments) => {
   let commentList = "";
   comments.forEach(comment => {
-    commentList += "\n\n" + COMMENT_SEPARATOR + "\n\n";
     commentList += parseComment(comment);
+    commentList += "\n" + COMMENT_SEPARATOR + "\n";
     if(comment.comment) {
       commentList += parseCommentList(comment.comment);
     }

@@ -8,13 +8,12 @@ var xml = new XmlStream(readable);
 
 xml.preserve('content', true);
 xml.collect('comment');
+xml.collect('attachment');
 xml.on('endElement: post', function (post) {
   count++;
-  if (count > 200) {
+  if (count === 277) {
     let out = new Post(post);
-    fs.writeFileSync('post.md', JSON.stringify(post));
-    fs.appendFileSync('out.md', out.doc());
-    process.exit();
+    out.writeToFile();
   }
 });
 

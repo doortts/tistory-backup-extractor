@@ -1,6 +1,6 @@
 기간한정 자바스크립트 학습모임 Octobersky.js
 ===
-| 2011-10-24 월요일 오전 1:12} | node.js (OctoberSkyJs)
+> doortts | 2011-10-24 월요일 오전 1:12 | node.js (OctoberSkyJs) | [원본](http://blog.doortts.com/205)
 
 "[10월의 하늘](http://www.nanumlectures.org/ "[http://www.nanumlectures.org/]로 이동합니다.")"이라는 지식기부 모임이 있습니다.   
 
@@ -33,18 +33,17 @@
 - 추가 -  
 현재는 목표를 하나로 바꿔서 node.js 학습 및 공유 모임이 되었습니다.
 
-#### comments 
-
----
+#### Comments
 
 저에게 아쉽게도 뒤늦게 이 글을 봤네요. 직접 참여하고 싶은데, 다음에 좋은 기회가 오겠죠? ㅎㅎ
 이런 자리 마련해주셔서 감사합니다.
 
  요 | 2011-12-09 금요일 오전 11:8
 
-
----
+--
 
 지금도 늦지 않았어요. 시간 제한 같은 것 없으니까, 룰대로 '학습하시고 댓글달기' 진행하시면 됩니다. : )
 
  [doortts](http://blog.doortts.com) | 2011-12-09 금요일 오후 2:5
+
+--

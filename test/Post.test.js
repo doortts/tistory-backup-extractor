@@ -19,8 +19,8 @@ describe('Post', () => {
     let parsed = post.getPostDetail();
 
     // Then
-    expect(parsed).to.equal('| 2011-10-24 월요일 오전 1:12} | node.js (OctoberSkyJs)\n\n');
-
+    expect(parsed).to.equal('> doortts | 2011-10-24 월요일 오전 1:12 | node.js (OctoberSkyJs) |' +
+        ' [원본](http://blog.doortts.com/205)\n\n');
   });
 
   it('getSuggestedFilename', () => {
@@ -31,7 +31,7 @@ describe('Post', () => {
     let parsed = post.getSuggestedFilename();
 
     // Then
-    expect(parsed).to.equal('00205-20111024-기간한정-자바스크립트-학습모임-Octoberskyjs');
+    expect(parsed).to.equal('00205-20111024-기간한정-자바스크립트-학습모임-Octoberskyjs.md');
   });
 
   it('doc', () => {
