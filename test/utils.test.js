@@ -7,7 +7,8 @@ import {
     lpadZero,
     getTistoryServerFileUrl
 } from '../app/parser/utils';
-import attachement from './resource/attchment.png.js';
+import attachement from './resource/attachment.png.js';
+import attachementPdf from './resource/attachment.pdf.js';
 
 describe('utils', () => {
   it('tistoryImageTagConverter', () => {
@@ -53,15 +54,22 @@ describe('utils', () => {
     expect(parsed).to.equal('0012');
   });
 
-  it('getTistoryUrl', () => {
+  it('getTistoryServerFileUrl - image file', () => {
     // Given
-    let remoteFileName = 'cfile22.uf.252C1E4D514867F5135B59.png';
-
     // When
-    let parsed = getTistoryServerFileUrl(remoteFileName);
+    let parsed = getTistoryServerFileUrl(attachement);
 
     // Then
     expect(parsed).to.equal('http://cfile22.uf.tistory.com/attach/252C1E4D514867F5135B59');
+  });
+
+  it('getTistoryServerFileUrl - non image', () => {
+    // Given
+    // When
+    let parsed = getTistoryServerFileUrl(attachementPdf);
+
+    // Then
+    expect(parsed).to.equal('http://blog.doortts.com/attachment/49743879dde2d9C.pdf');
   })
 });
 

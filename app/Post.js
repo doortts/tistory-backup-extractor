@@ -22,7 +22,7 @@ class Post {
       this.post.attachment.forEach(item => {
         this.attachmentList.push({
           name: item.label,
-          url: getTistoryServerFileUrl(item.name)
+          url: getTistoryServerFileUrl(item)
         });
       });
     }
@@ -39,7 +39,7 @@ class Post {
   }
 
   getBody() {
-    return postParser.replaceTistoryCustomImageTag(striptags(toMarkdown(this.post.content.$text)));
+    return postParser.replaceTistoryCustomImageTag(striptags(toMarkdown(this.post.content.$text, { gfm: true })));
   }
 
   getPostDetail() {
