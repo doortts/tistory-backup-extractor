@@ -28,8 +28,11 @@ export const tistoryImageTagConverter = tistoryTag => {
   }
 };
 
-export const attachmentWriter = (filename, base64Content) => {
-  fs.outputFileSync(filename, new Buffer(base64Content, 'base64'));
+export const attachmentWriter = (filename, base64Content, cb) => {
+  fs.outputFile(filename, new Buffer(base64Content, 'base64'), err => {
+    if(err) console.error(err);
+    if(typeof cb === 'function') return cb();
+  });
 };
 
 export const lpadZero = (str, n) => (

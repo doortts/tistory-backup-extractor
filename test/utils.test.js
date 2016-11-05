@@ -22,7 +22,7 @@ describe('utils', () => {
     expect(imageTag).to.equal(expected);
   });
 
-  it('attachmentWriter', () => {
+  it('attachmentWriter', (done) => {
     // Given
     let filename = attachement.label;
     let base64Content = attachement.content;
@@ -30,14 +30,16 @@ describe('utils', () => {
     let filePathName = path.join(baseDir, filename);
 
     // When
-    attachmentWriter(filePathName, base64Content);
+    attachmentWriter(filePathName, base64Content, () => {
 
-    // Then
-    expect(fs.existsSync(filePathName)).to.equal(true);
-    expect(fs.readFileSync(filePathName).toString('base64')).to.equal(base64Content);
+      // Then
+      expect(fs.existsSync(filePathName)).to.equal(true);
+      expect(fs.readFileSync(filePathName).toString('base64')).to.equal(base64Content);
 
-    // Clean up
-    fs.removeSync(filePathName);
+      // Clean up
+      fs.removeSync(filePathName);
+      done();
+    });
   });
 
   it('lpadZero', () => {
