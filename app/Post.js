@@ -104,7 +104,7 @@ class Post {
       attachmentList.some(item => {
         if (item.name === filename) {
           attachment = item;
-          item.url = './' +  config.attchmentDir + '/' + filename;  // force Update url to local file
+          item.url = config.attchmentDir + '/' + item.label;  // force Update url to local file
           return true;
         }
       });
