@@ -13,7 +13,7 @@ xml.collect('attachment');
 console.time('time');
 
 xml.on('endElement: post', function (post) {
-  if(count === 77) {
+  if(count === 16) {
     let out = new Post(post);
     out.writeToFile();
   }

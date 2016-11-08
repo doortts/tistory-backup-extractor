@@ -4,15 +4,13 @@ import moment from 'moment';
 import fse from 'fs-extra';
 import path from 'path';
 import config from '../config';
-import postParser from './parser/postParser';
 import commentParser from './parser/commentParser';
-import { timestampConverter, lpadZero, attachmentWriter, getTistoryServerFileUrl } from './parser/utils';
+import { timestampConverter, lpadZero, attachmentWriter, getTistoryServerFileUrl, tistoryImageTagConverter } from './parser/utils';
 
 class Post {
   constructor(postJson) {
     this.post = postJson;
-    this.baseDir = './blog';
-    this.attchmentDir = path.join(this.baseDir, './attachments');
+    this.attchmentPath = path.join(config.baseDir, config.attchmentDir);
     this.attachmentList = [];
     this.collectAttachmentList();
   }
@@ -21,7 +19,8 @@ class Post {
     if (this.post.attachment) {
       this.post.attachment.forEach(item => {
         this.attachmentList.push({
-          name: item.label,
+          name: item.name,
+          label: item.label,
           url: getTistoryServerFileUrl(item)
         });
       });
@@ -39,7 +38,7 @@ class Post {
   }
 
   getBody() {
-    return postParser.replaceTistoryCustomImageTag(striptags(toMarkdown(this.post.content.$text, { gfm: true })));
+    return this.replaceTistoryCustomImageTag();
   }
 
   getPostDetail() {
@@ -56,7 +55,7 @@ class Post {
   }
 
   writeToFile() {
-    fse.outputFile(path.join(this.baseDir, this.getSuggestedFilename()), this.doc(), (err) => {
+    fse.outputFile(path.join(config.baseDir, this.getSuggestedFilename()), this.doc(), (err) => {
       if (err) console.error(err);
       this.writeAttachments();
     });
@@ -65,7 +64,7 @@ class Post {
   writeAttachments() {
     if (this.post.attachment) {
       this.post.attachment.forEach(item => {
-        attachmentWriter(path.join(this.attchmentDir, item.label), item.content.$text);
+        attachmentWriter(path.join(this.attchmentPath, item.label), item.content.$text);
       });
     }
   }
@@ -73,7 +72,7 @@ class Post {
   getAttachmentsList() {
     let listString = `\n##### Attachments(${this.attachmentList.length})\n`;
     this.attachmentList.forEach(attachment => {
-      listString += `- [${attachment.name}](${attachment.url})\n`
+      listString += `- [${attachment.label}](${attachment.url})\n`
     });
     return listString;
   }
@@ -88,6 +87,29 @@ class Post {
     }
     return body;
   }
+
+  replaceTistoryCustomImageTag(forcedText){
+    let content = forcedText || striptags(toMarkdown(this.post.content.$text, { gfm: true }));
+    let attachmentList = this.attachmentList;
+    if(content.indexOf('![]([##_ATTACH_PATH_##]') !== -1){
+      return content.replace(/\[]\(\[##_ATTACH_PATH_##]\/(.*?)\)/g, parseOldLink);
+    }
+    return content.replace(/\[##(.*?)##]/g, a => {
+      return tistoryImageTagConverter(a);
+    });
+
+    /////////////////////
+    function parseOldLink(all, filename){
+      let attachment;
+      attachmentList.some(item => {
+        if (item.name === filename) {
+          attachment = item;
+          return true;
+        }
+      });
+      return `[${attachment.label}](./${path.join(config.attchmentDir, attachment.label)})`;
+    }
+  };
 }
 
 export default Post;

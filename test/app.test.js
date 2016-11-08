@@ -1,2 +1,2 @@
-describe('Blobs', function() {
+describe('app', function() {
 });

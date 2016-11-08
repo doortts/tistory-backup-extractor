@@ -4,7 +4,7 @@ import path from 'path';
 import { parseComment, commentFooter, parseCommentList } from '../app/parser/commentParser';
 import comment from './resource/comment-01';
 
-describe('Comment', () => {
+describe('commentParser', () => {
   it('parseComment', () => {
     //Given
     let expectedString = fs.readFileSync(path.join(__dirname, './resource/comment.md')).toString();

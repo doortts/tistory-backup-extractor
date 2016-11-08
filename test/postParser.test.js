@@ -17,26 +17,4 @@ describe('postParser', () => {
     expect(parsed).to.equal(expectedString);
   });
 
-  it('replaceTistoryCustomImageTag - simple ', () => {
-    //Given
-    let actualString = "감자나라 \n[##_1C|cfile30.uf.11613F345148691C3095BD.png|width=\"665\" height=\"361\" filename=\"potato.png\" filemime=\"image/jpeg\"|_##]고구마입니다 \n";
-
-    //When
-    let parsed = replaceTistoryCustomImageTag(actualString);
-
-    //Then
-    expect(parsed).to.equal("감자나라 \n![potato.png](./attachments/potato.png)고구마입니다 \n");
-  });
-
-  it('replaceTistoryCustomImageTag ', () => {
-    //Given
-    let actualString = fs.readFileSync(path.join(__dirname, './resource/content-mark.md')).toString().trim();
-    let expectedString = fs.readFileSync(path.join(__dirname, './resource/content-mark-correct.md')).toString().trim();
-
-    //When
-    let parsed = replaceTistoryCustomImageTag(actualString);
-
-    //Then
-    expect(parsed).to.equal(expectedString);
-  });
 });
