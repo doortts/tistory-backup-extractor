@@ -2,9 +2,12 @@ import moment from 'moment';
 import fs from 'fs-extra';
 import config from '../../config';
 
-export const timestampConverter = unixtime => {
+export const timestampConverter = (unixtime, format) => {
   moment.locale('ko-KR');
   let date = moment(new Date(unixtime * 1000));
+  if(format) {
+    return date.format(format);
+  }
   return date.format('YYYY-MM-DD dddd A h:m');
 };
 
