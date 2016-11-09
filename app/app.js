@@ -16,7 +16,7 @@ xml.on('endElement: post', function (postJson) {
     post.writeToFile();
     indexer.addPost(post);
 
-    process.stdout.write(".");
+    process.stdout.write('.');
     totalCount++;
   } catch (e) {
     console.log(e);
@@ -24,10 +24,10 @@ xml.on('endElement: post', function (postJson) {
 });
 
 xml.on('error', function (message) {
-  console.log('Parsing as ' + (encoding || 'auto') + ' failed: ' + message);
+  console.log('Parsing as auto failed: ' + message);
 });
 
-xml.on('end', (arg) => {
+xml.on('end', () => {
   indexer.out();
   console.log('\nTotal: ', totalCount);
   console.timeEnd('time');
@@ -35,7 +35,7 @@ xml.on('end', (arg) => {
 
 ///////////////////////
 
-function createXmlStream(){
+function createXmlStream() {
   let xml = new XmlStream(readable);
 
   xml.preserve('content', true);

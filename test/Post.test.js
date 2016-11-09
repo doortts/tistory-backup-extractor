@@ -1,3 +1,4 @@
+/* eslint no-undef: "off" */
 import { expect } from 'chai';
 import fs from 'fs';
 import path from 'path';
@@ -7,11 +8,6 @@ import postWithAttachment from './resource/post-with-attachment.md';
 import Post from '../app/Post';
 
 describe('Post', () => {
-  let post;
-
-  beforeEach(() => {
-  });
-
   it('getPostDetail', () => {
     // Given
     var post = new Post(postJson);
@@ -50,14 +46,14 @@ describe('Post', () => {
 
   it('replaceTistoryCustomTagFromBody - simple ', () => {
     //Given
-    let actualString = "감자나라 \n[##_1C|cfile30.uf.11613F345148691C3095BD.png|width=\"665\" height=\"361\" filename=\"potato.png\" filemime=\"image/jpeg\"|_##]고구마입니다 \n";
+    let actualString = '감자나라 \n[##_1C|cfile30.uf.11613F345148691C3095BD.png|width=\"665\" height=\"361\" filename=\"potato.png\" filemime=\"image/jpeg\"|_##]고구마입니다 \n';
     var post = new Post(postJson);
 
     //When
     let parsed = post.replaceTistoryCustomTagFromBody(actualString);
 
     //Then
-    expect(parsed).to.equal("감자나라 \n![potato.png](./attachments/potato.png)고구마입니다 \n");
+    expect(parsed).to.equal('감자나라 \n![potato.png](./attachments/potato.png)고구마입니다 \n');
   });
 
   it('replaceTistoryCustomTagFromBody - old post ', () => {
@@ -68,7 +64,7 @@ describe('Post', () => {
     let parsed = post.replaceTistoryCustomTagFromBody();
 
     //Then
-    expect(parsed).to.equal("![zrclip_004n7fb407e0.png](./attachments/zrclip_004n7fb407e0.png)\n\n서점에 봤을때는 사실 눈에 잘 안들어 왔는데, 서평이 나쁘지 않아서 다시금 관심이...");
+    expect(parsed).to.equal('![zrclip_004n7fb407e0.png](./attachments/zrclip_004n7fb407e0.png)\n\n서점에 봤을때는 사실 눈에 잘 안들어 왔는데, 서평이 나쁘지 않아서 다시금 관심이...');
   });
 
   it('replaceTistoryCustomTagFromBody ', () => {

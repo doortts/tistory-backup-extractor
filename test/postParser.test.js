@@ -1,7 +1,8 @@
+/* eslint no-undef: "off" */
 import { expect } from 'chai';
 import fs from 'fs';
 import path from 'path';
-import { createHeader, replaceTistoryCustomImageTag } from '../app/parser/postParser';
+import { createHeader } from '../app/parser/postParser';
 import post from './resource/post-01';
 
 
@@ -16,5 +17,4 @@ describe('postParser', () => {
     //Then
     expect(parsed).to.equal(expectedString);
   });
-
 });

@@ -15,4 +15,4 @@ export const createHeader = (post) => {
 
 export default {
   createHeader
-}
+};

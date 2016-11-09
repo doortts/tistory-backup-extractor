@@ -1,6 +1,5 @@
 import moment from 'moment';
 import fs from 'fs-extra';
-import path from 'path';
 import config from '../../config';
 
 export const timestampConverter = unixtime => {
@@ -11,22 +10,22 @@ export const timestampConverter = unixtime => {
 
 export const tistoryTagConverter = tistoryTag => {
   const attachmentDir = './attachments/';
-  let treatAsImage = "";
+  let treatAsImage = '';
   let filename;
 
-  tistoryTag.split("\" ").forEach(str => {
-    if (str.indexOf("filename=") !== -1) {
-      filename = str.split("\"")[1];
+  tistoryTag.split('\" ').forEach(str => {
+    if (str.indexOf('filename=') !== -1) {
+      filename = str.split('\"')[1];
     }
     if (isImage(str)) {
-      treatAsImage = "!";
+      treatAsImage = '!';
     }
   });
   return `${treatAsImage}[${filename}](${attachmentDir}${filename})`;
 
   /// private function
   function isImage(str) {
-    return str.indexOf("filemime=") !== -1 && str.indexOf("image") !== -1;
+    return str.indexOf('filemime=') !== -1 && str.indexOf('image') !== -1;
   }
 };
 
@@ -38,7 +37,7 @@ export const attachmentWriter = (filename, base64Content, cb) => {
 };
 
 export const lpadZero = (str, n) => (
-    str.length < n ? lpadZero("0" + str, n) : str
+    str.length < n ? lpadZero('0' + str, n) : str
 );
 
 export const getTistoryServerFileUrl = (item) => {

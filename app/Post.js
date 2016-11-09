@@ -1,3 +1,4 @@
+/* eslint no-undef: "off" */
 import toMarkdown from 'to-markdown';
 import striptags from 'striptags';
 import moment from 'moment';
@@ -5,7 +6,13 @@ import fse from 'fs-extra';
 import path from 'path';
 import config from '../config';
 import commentParser from './parser/commentParser';
-import { timestampConverter, lpadZero, attachmentWriter, getTistoryServerFileUrl, tistoryTagConverter } from './parser/utils';
+import {
+    timestampConverter,
+    lpadZero,
+    attachmentWriter,
+    getTistoryServerFileUrl,
+    tistoryTagConverter
+} from './parser/utils';
 
 class Post {
   constructor(postJson) {
@@ -28,7 +35,7 @@ class Post {
   }
 
   getTitleLine() {
-    return this.post.title + "\n===\n";
+    return this.post.title + '\n===\n';
   }
 
   getSuggestedFilename() {
@@ -50,7 +57,7 @@ class Post {
     return detail + '\n\n';
   }
 
-  getOriginalPageUrl(){
+  getOriginalPageUrl() {
     return `[원본](${config.tistoryUrl}/${this.post.id})`;
   }
 
@@ -72,7 +79,7 @@ class Post {
   getAttachmentsList() {
     let listString = `\n##### Attachments(${this.attachmentList.length})\n`;  // headline
     this.attachmentList.forEach(attachment => {
-      listString += `- [${attachment.label}](${attachment.url})\n`
+      listString += `- [${attachment.label}](${attachment.url})\n`;
     });
     return listString;
   }
@@ -83,15 +90,15 @@ class Post {
       body += this.getAttachmentsList();
     }
     if (this.post.comment && this.post.comment.length > 0) {
-      body += `\n\n#### Comments\n` + commentParser.parseCommentList(this.post.comment)
+      body += `\n\n#### Comments\n` + commentParser.parseCommentList(this.post.comment);
     }
     return body;
   }
 
-  replaceTistoryCustomTagFromBody(forcedText){
+  replaceTistoryCustomTagFromBody(forcedText) {
     let content = forcedText || striptags(toMarkdown(this.post.content.$text, { gfm: true }));
     let attachmentList = this.attachmentList;
-    if(hasOldCustomTag(content)){
+    if (hasOldCustomTag(content)) {
       return content.replace(/\[]\(\[##_ATTACH_PATH_##]\/(.*?)\)/g, parseOldLink);
     }
     return content.replace(/\[##(.*?)##]/g, a => {
@@ -99,7 +106,7 @@ class Post {
     });
 
     /////////////////////
-    function parseOldLink(all, filename){
+    function parseOldLink(all, filename) {
       let attachment;
       attachmentList.some(item => {
         if (item.name === filename) {
@@ -112,9 +119,9 @@ class Post {
     }
 
     function hasOldCustomTag(text) {
-      return text.indexOf('![]([##_ATTACH_PATH_##]') !== -1
+      return text.indexOf('![]([##_ATTACH_PATH_##]') !== -1;
     }
-  };
+  }
 }
 
 export default Post;

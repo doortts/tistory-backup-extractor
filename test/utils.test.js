@@ -1,3 +1,4 @@
+/* eslint no-undef: "off" */
 import { expect } from 'chai';
 import fs from 'fs-extra';
 import path from 'path';
@@ -39,7 +40,7 @@ describe('utils', () => {
     // Given
     let filename = attachement.label;
     let base64Content = attachement.content;
-    let baseDir = "./test/resource/";
+    let baseDir = './test/resource/';
     let filePathName = path.join(baseDir, filename);
 
     // When
@@ -82,6 +83,6 @@ describe('utils', () => {
 
     // Then
     expect(parsed).to.equal('http://blog.doortts.com/attachment/49743879dde2d9C.pdf');
-  })
+  });
 });
 

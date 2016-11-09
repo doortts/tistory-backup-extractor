@@ -6,7 +6,8 @@
   "scripts": {
     "start": "babel-node --presets es2015 app/app.js",
     "test": "mocha --compilers js:babel-register test/**/*.test.js",
-    "test-watch": "npm test -- --watch"
+    "test-watch": "npm test -- --watch",
+    "lint": "eslint app test *.js"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +26,10 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
+    "eslint": "^3.9.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.3.1",
+    "eslint-plugin-standard": "^2.0.1",
     "mocha": "^3.1.2"
   }
 }
