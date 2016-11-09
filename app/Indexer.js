@@ -12,8 +12,7 @@ class Indexer {
     let item = {
       no: post.post.id,
       name: post.post.title,
-      filename: post.getSuggestedFilename(),
-      link: post.slogan + ".md"
+      filename: post.getSuggestedFilename()
     };
 
     this.list.push(item);

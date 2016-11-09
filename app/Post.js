@@ -5,7 +5,7 @@ import fse from 'fs-extra';
 import path from 'path';
 import config from '../config';
 import commentParser from './parser/commentParser';
-import { timestampConverter, lpadZero, attachmentWriter, getTistoryServerFileUrl, tistoryImageTagConverter } from './parser/utils';
+import { timestampConverter, lpadZero, attachmentWriter, getTistoryServerFileUrl, tistoryTagConverter } from './parser/utils';
 
 class Post {
   constructor(postJson) {
@@ -38,7 +38,7 @@ class Post {
   }
 
   getBody() {
-    return this.replaceTistoryCustomImageTag();
+    return this.replaceTistoryCustomTagFromBody();
   }
 
   getPostDetail() {
@@ -70,7 +70,7 @@ class Post {
   }
 
   getAttachmentsList() {
-    let listString = `\n##### Attachments(${this.attachmentList.length})\n`;
+    let listString = `\n##### Attachments(${this.attachmentList.length})\n`;  // headline
     this.attachmentList.forEach(attachment => {
       listString += `- [${attachment.label}](${attachment.url})\n`
     });
@@ -88,14 +88,14 @@ class Post {
     return body;
   }
 
-  replaceTistoryCustomImageTag(forcedText){
+  replaceTistoryCustomTagFromBody(forcedText){
     let content = forcedText || striptags(toMarkdown(this.post.content.$text, { gfm: true }));
     let attachmentList = this.attachmentList;
-    if(content.indexOf('![]([##_ATTACH_PATH_##]') !== -1){
+    if(hasOldCustomTag(content)){
       return content.replace(/\[]\(\[##_ATTACH_PATH_##]\/(.*?)\)/g, parseOldLink);
     }
     return content.replace(/\[##(.*?)##]/g, a => {
-      return tistoryImageTagConverter(a);
+      return tistoryTagConverter(a);
     });
 
     /////////////////////
@@ -109,6 +109,10 @@ class Post {
         }
       });
       return `[${attachment.label}](./${path.join(config.attchmentDir, attachment.label)})`;
+    }
+
+    function hasOldCustomTag(text) {
+      return text.indexOf('![]([##_ATTACH_PATH_##]') !== -1
     }
   };
 }

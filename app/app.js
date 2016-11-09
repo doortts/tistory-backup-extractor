@@ -3,25 +3,21 @@ import XmlStream from 'xml-stream';
 import Post from './Post';
 import Indexer from './Indexer';
 
-var count = 0;
+var totalCount = 0;
 const readable = fs.createReadStream('./ti.xml');
-var xml = new XmlStream(readable);
-
-xml.preserve('content', true);
-xml.collect('comment');
-xml.collect('attachment');
+var xml = createXmlStream();
 
 console.time('time');
 var indexer = new Indexer();
 
-xml.on('endElement: post', function (post) {
+xml.on('endElement: post', function (postJson) {
   try {
-    let out = new Post(post);
-    out.writeToFile();
-    indexer.addPost(out);
+    let post = new Post(postJson);
+    post.writeToFile();
+    indexer.addPost(post);
 
     process.stdout.write(".");
-    count++;
+    totalCount++;
   } catch (e) {
     console.log(e);
   }
@@ -33,6 +29,17 @@ xml.on('error', function (message) {
 
 xml.on('end', (arg) => {
   indexer.out();
-  console.log('\nTotal: ', count);
+  console.log('\nTotal: ', totalCount);
   console.timeEnd('time');
 });
+
+///////////////////////
+
+function createXmlStream(){
+  let xml = new XmlStream(readable);
+
+  xml.preserve('content', true);
+  xml.collect('comment');
+  xml.collect('attachment');
+  return xml;
+}

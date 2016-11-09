@@ -9,7 +9,7 @@ export const timestampConverter = unixtime => {
   return date.format('YYYY-MM-DD dddd A h:m');
 };
 
-export const tistoryImageTagConverter = tistoryTag => {
+export const tistoryTagConverter = tistoryTag => {
   const attachmentDir = './attachments/';
   let treatAsImage = "";
   let filename;

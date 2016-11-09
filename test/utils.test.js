@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import fs from 'fs-extra';
 import path from 'path';
 import {
-    tistoryImageTagConverter,
+    tistoryTagConverter,
     attachmentWriter,
     lpadZero,
     getTistoryServerFileUrl
@@ -11,25 +11,25 @@ import attachement from './resource/attachment.png.js';
 import attachementPdf from './resource/attachment.pdf.js';
 
 describe('utils', () => {
-  it('tistoryImageTagConverter', () => {
+  it('tistoryTagConverter', () => {
     // Given
     let tistoryTag = fs.readFileSync(path.join(__dirname, './resource/tistory-image-tag.md')).toString().trim();
     let expected = fs.readFileSync(path.join(__dirname, './resource/tistory-image-tag-converted.md')).toString().trim();
 
     //When
-    let imageTag = tistoryImageTagConverter(tistoryTag);
+    let imageTag = tistoryTagConverter(tistoryTag);
 
     // Then
     expect(imageTag).to.equal(expected);
   });
 
-  it('tistoryImageTagConverter - filename with whitespace', () => {
+  it('tistoryTagConverter - filename with whitespace', () => {
     // Given
     let tistoryTag = fs.readFileSync(path.join(__dirname, './resource/tistory-image-tag2.md')).toString().trim();
     let expected = fs.readFileSync(path.join(__dirname, './resource/tistory-image-tag2-converted.md')).toString().trim();
 
     //When
-    let imageTag = tistoryImageTagConverter(tistoryTag);
+    let imageTag = tistoryTagConverter(tistoryTag);
 
     // Then
     expect(imageTag).to.equal(expected);
