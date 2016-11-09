@@ -23,6 +23,18 @@ describe('utils', () => {
     expect(imageTag).to.equal(expected);
   });
 
+  it('tistoryImageTagConverter - filename with whitespace', () => {
+    // Given
+    let tistoryTag = fs.readFileSync(path.join(__dirname, './resource/tistory-image-tag2.md')).toString().trim();
+    let expected = fs.readFileSync(path.join(__dirname, './resource/tistory-image-tag2-converted.md')).toString().trim();
+
+    //When
+    let imageTag = tistoryImageTagConverter(tistoryTag);
+
+    // Then
+    expect(imageTag).to.equal(expected);
+  });
+
   it('attachmentWriter', (done) => {
     // Given
     let filename = attachement.label;

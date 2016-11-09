@@ -14,7 +14,7 @@ export const tistoryImageTagConverter = tistoryTag => {
   let treatAsImage = "";
   let filename;
 
-  tistoryTag.split(" ").forEach(str => {
+  tistoryTag.split("\" ").forEach(str => {
     if (str.indexOf("filename=") !== -1) {
       filename = str.split("\"")[1];
     }
