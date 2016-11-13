@@ -25,7 +25,7 @@ class Indexer {
     this.list.forEach(item => {
       indexer += `- [${item.no}. ${item.date} - ${item.name}](${item.filename.replace(/.md$/, '')})\n`;
     });
-    fse.outputFileSync(path.join(config.baseDir, './Home.md'), indexer);
+    fse.outputFileSync(path.join(config.EXPORT_BASE_DIR, './Home.md'), indexer);
     this.list = [];
   }
 }

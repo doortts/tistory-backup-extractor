@@ -11,10 +11,10 @@ export const timestampConverter = (unixtime, format) => {
   return date.format('YYYY-MM-DD dddd A h:m');
 };
 
-export const tistoryTagConverter = tistoryTag => {
+export const tistoryTagConverter = (tistoryTag, attachmentList) => {
   const attachmentDir = './attachments/';
   let treatAsImage = '';
-  let filename;
+  let filename = '';
 
   tistoryTag.split('\" ').forEach(str => {
     if (str.indexOf('filename=') !== -1) {
@@ -24,11 +24,28 @@ export const tistoryTagConverter = tistoryTag => {
       treatAsImage = '!';
     }
   });
+
+  let attachment = findAttachmentByLabelName(filename, attachmentList);
+  if(attachment.yonaFile){
+    return `${treatAsImage}[${attachment.YOUR_NAME}](/files/${attachment.yonaFile})})`;
+  }
+
   return `${treatAsImage}[${filename}](${attachmentDir}${filename})`;
 
-  /// private function
+  //////////////////////////////////////////
   function isImage(str) {
     return str.indexOf('filemime=') !== -1 && str.indexOf('image') !== -1;
+  }
+
+  function findAttachmentByLabelName(labelName, attachmentList){
+    let attachment = {};
+    attachmentList.some(item => {
+      if (item.label === labelName) {
+        attachment = item;
+        return true;
+      }
+    });
+    return attachment;
   }
 };
 
@@ -48,6 +65,6 @@ export const getTistoryServerFileUrl = (item) => {
   if (item.$.mime.indexOf('image') !== -1) {
     return `http://${splited[0]}.${splited[1]}.tistory.com/attach/${splited[2]}`;
   } else {
-    return `${config.tistoryUrl}/attachment/${item.name}`;
+    return `${config.YOUR_TISTORY_URL}/attachment/${item.name}`;
   }
 };

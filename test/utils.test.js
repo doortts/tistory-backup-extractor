@@ -18,7 +18,7 @@ describe('utils', () => {
     let expected = fs.readFileSync(path.join(__dirname, './resource/tistory-image-tag-converted.md')).toString().trim();
 
     //When
-    let imageTag = tistoryTagConverter(tistoryTag);
+    let imageTag = tistoryTagConverter(tistoryTag, []);
 
     // Then
     expect(imageTag).to.equal(expected);
@@ -30,7 +30,7 @@ describe('utils', () => {
     let expected = fs.readFileSync(path.join(__dirname, './resource/tistory-image-tag2-converted.md')).toString().trim();
 
     //When
-    let imageTag = tistoryTagConverter(tistoryTag);
+    let imageTag = tistoryTagConverter(tistoryTag, []);
 
     // Then
     expect(imageTag).to.equal(expected);

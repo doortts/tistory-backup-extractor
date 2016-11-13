@@ -17,7 +17,7 @@ import {
 class Post {
   constructor(postJson) {
     this.post = postJson;
-    this.attchmentPath = path.join(config.baseDir, config.attchmentDir);
+    this.attchmentPath = path.join(config.EXPORT_BASE_DIR, config.ATTACHMENTS_DIR);
     this.attachmentList = [];
     this.collectAttachmentList();
   }
@@ -38,6 +38,10 @@ class Post {
     return this.post.title + '\n===\n';
   }
 
+  getDefaultPostTimestamp(){
+    return this.post.published || this.post.created;
+  }
+
   getSuggestedFilename() {
     moment.locale('ko-KR');
     let date = moment(new Date((this.post.published || this.post.created) * 1000));
@@ -49,7 +53,7 @@ class Post {
   }
 
   getPostDetail() {
-    let detail = `> ${config.name} | ${timestampConverter(this.post.created)}`;
+    let detail = `> ${config.YOUR_NAME} | ${timestampConverter(this.post.created)}`;
     if (this.post.category) {
       detail += ' | ' + this.post.category;
     }
@@ -58,11 +62,11 @@ class Post {
   }
 
   getOriginalPageUrl() {
-    return `[원본](${config.tistoryUrl}/${this.post.id})`;
+    return `[원본](${config.YOUR_TISTORY_URL}/${this.post.id})`;
   }
 
   writeToFile() {
-    fse.outputFile(path.join(config.baseDir, this.getSuggestedFilename()), this.doc(), (err) => {
+    fse.outputFile(path.join(config.EXPORT_BASE_DIR, this.getSuggestedFilename()), this.doc(), (err) => {
       if (err) console.error(err);
       this.writeAttachments();
     });
@@ -89,10 +93,16 @@ class Post {
     if (this.attachmentList.length > 0) {
       body += this.getAttachmentsList();
     }
-    if (this.post.comment && this.post.comment.length > 0) {
-      body += `\n\n#### Comments\n` + commentParser.parseCommentList(this.post.comment);
-    }
+    body += this.getCommentList();
     return body;
+  }
+
+  getCommentList(){
+    var comments = '';
+    if (this.post.comment && this.post.comment.length > 0) {
+      comments += `\n\n#### Comments\n` + commentParser.parseCommentList(this.post.comment);
+    }
+    return comments;
   }
 
   replaceTistoryCustomTagFromBody(forcedText) {
@@ -102,20 +112,30 @@ class Post {
       return content.replace(/\[]\(\[##_ATTACH_PATH_##]\/(.*?)\)/g, parseOldLink);
     }
     return content.replace(/\[##(.*?)##]/g, a => {
-      return tistoryTagConverter(a);
+      return tistoryTagConverter(a, this.attachmentList);
     });
 
     /////////////////////
+
+    /**
+     * 옛날 티스토리는 첨부파일의 링크가 지금이랑 달라서 그걸 보정해주는 함수
+     * @param all 정규식의 첫 번째 인자가 전체 문장인데 그거 필요없음. 두 번째 filename을 얻기 위해 그냥 넣은거임
+     * @param filename
+     * @returns {string}
+     */
     function parseOldLink(all, filename) {
       let attachment;
       attachmentList.some(item => {
         if (item.name === filename) {
           attachment = item;
-          item.url = config.attchmentDir + '/' + item.label;  // force Update url to local file
+          item.url = config.ATTACHMENTS_DIR + '/' + item.label;  // force Update url to local file
           return true;
         }
       });
-      return `[${attachment.label}](./${path.join(config.attchmentDir, attachment.label)})`;
+      if(attachment.yonaFile){
+        return `[${attachment.label}](/files/${attachment.yonaFile})})`;
+      }
+      return `[${attachment.label}](./${path.join(config.ATTACHMENTS_DIR, attachment.label)})`;
     }
 
     function hasOldCustomTag(text) {
