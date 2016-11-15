@@ -27,7 +27,7 @@ export const tistoryTagConverter = (tistoryTag, attachmentList) => {
 
   let attachment = findAttachmentByLabelName(filename, attachmentList);
   if(attachment.yonaFile){
-    return `${treatAsImage}[${attachment.YOUR_NAME}](/files/${attachment.yonaFile})})`;
+    return `${treatAsImage}[${filename}](/files/${attachment.yonaFile})`;
   }
 
   return `${treatAsImage}[${filename}](${attachmentDir}${filename})`;

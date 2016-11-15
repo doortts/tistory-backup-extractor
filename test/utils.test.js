@@ -36,6 +36,22 @@ describe('utils', () => {
     expect(imageTag).to.equal(expected);
   });
 
+  it('tistoryTagConverter - to Yona', () => {
+    // Given
+    let tistoryTag = `[##_1C|cfile30.uf.11613F345148691C3095BD.png|width="665" height="361" filename="nextforge.png" filemime="image/jpeg"|_##]`;
+    let expected = `![nextforge.png](/files/112)`;
+    let attachmentList = [{
+      label: 'nextforge.png',
+      yonaFile: '112'
+    }];
+
+    //When
+    let imageTag = tistoryTagConverter(tistoryTag, attachmentList);
+
+    // Then
+    expect(imageTag).to.equal(expected);
+  });
+
   it('attachmentWriter', (done) => {
     // Given
     let filename = attachement.label;
