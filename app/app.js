@@ -16,7 +16,7 @@ async function main() {
 
   console.log('Ready!');
   console.log('----------------------------');
-  console.log(`발행글: ${status.done}, 비밀글: ${status.skip}`);
+  console.log(`Published: ${status.done}, Private: ${status.skip}`);
   console.log('----------------------------\n');
 
   let bar = createProgressBar(status.done);
@@ -53,7 +53,7 @@ main();
 
 function createProgressBar(total) {
   return new ProgressBar({
-    schema: ' [:bar] \n:current/:total \n:percent \n:elapseds :etas',
+    schema: ' [.grey:filled.cyan:blank.grey].grey \n\n:current/:total \n:percent \n:elapseds :etas',
     callback: function () {
       console.log('Done!');
     },
