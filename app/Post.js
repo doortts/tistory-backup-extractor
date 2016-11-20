@@ -133,7 +133,7 @@ class Post {
         }
       });
       if(attachment.yonaFile){
-        return `[${attachment.label}](/files/${attachment.yonaFile})})`;
+        return `[${attachment.label}](/files/${attachment.yonaFile})`;
       }
       return `[${attachment.label}](./${path.join(config.ATTACHMENTS_DIR, attachment.label)})`;
     }
