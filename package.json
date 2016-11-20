@@ -1,8 +1,8 @@
 {
-  "name": "tistory-breakdown",
-  "version": "1.0.0",
+  "name": "tistory-backup-extractor",
+  "version": "0.8.0",
   "description": "",
-  "main": "index.js",
+  "main": "app/app.js",
   "scripts": {
     "start": "babel-node --presets es2015 app/app.js",
     "test": "mocha --compilers js:babel-register test/**/*.test.js",
@@ -12,7 +12,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "ascii-progress": "^1.0.5",
     "fs-extra": "^1.0.0",
