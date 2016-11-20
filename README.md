@@ -12,7 +12,7 @@ Tistory Backup Extractor
 - 그 결과 markdown 에디터(맥OS에서는 MOU 같은 app)으로 편하게 볼 수 있게 됩니다. 
    - 첨부 파일이미지도 같이 보입니다.
 - markdown 문법을 지원하는 다른 서비스([Yona](https://repo.yona.io) 나 [Github](https://github.com/)으로 이사를 쉽게 갈 수 있습니다. (각각 테스트 해봤는데 잘 됩니다)
-
+   - 이전 예) https://repo.yona.io/doortts/blog/posts
 
 필요도구
 ---
