@@ -73,7 +73,7 @@ export default {
 
 ```
 
-Github wiki로 이동하는 방법은 https://github.com/doortts/tistory-blog-export-example/wiki
+Github wiki로 이동하는 방법은 https://github.com/doortts/tistory-blog-export-example
 
 실행
 ---
