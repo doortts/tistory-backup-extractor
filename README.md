@@ -96,3 +96,10 @@ npm test
 ```
 
 함수나 클래스의 사용법은 test 폴더의 실행 내용들을 참고해주세요.
+
+추가로 도전해 볼만한 작업
+---
+- Electron 앱으로 만들기
+  http://electron.atom.io/docs/
+- Github Wiki가 아니라 이슈페이지로 보내기 
+  https://gist.github.com/jonmagic/5282384165e0f86ef105
