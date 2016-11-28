@@ -1,8 +1,12 @@
 {
   "name": "tistory-backup-extractor",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "",
   "main": "app/app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doortts/tistory-backup-extractor.git"
+  },
   "scripts": {
     "start": "babel-node --presets es2015 app/app.js",
     "test": "mocha --compilers js:babel-register test/**/*.test.js",
