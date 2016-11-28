@@ -36,23 +36,7 @@ npm install
 
 - 위에서 설치한 tistory-backup-extractor 폴더에 있는 config.json 파일을 열어서 필요 항목을 수정합니다.
 
-- EXPORT_FILE_NAME: 티스토리에서 내려 받은 백업파일 이름
-- YOUR_TISTORY_URL: 티스토리 주소
-- YOUR_NAME: 티스토리에서 사용한 이름 (그냥 표시용이라 편하게 적어도 무방합니다)
-- HIDE_PRIVATE_POST: 발행(publishing)하지 않은 것은 그냥 숨겨 놓을 건지
-- EXPORT_BASE_DIR: 분해해 넣을 로컬 기본 폴더 
-- ATTACHMENTS_DIR: EXPORT_BASE_DIR 이하에 첨부파일들을 모아놓을 폴더이름
-
-- YONA 이하 항목등은 yona 설치한 사람들은 자신의 yona 서버로 이전가능하도록 해주는 기능
-  - DO_EXPORT: yona 서버로도 보낼건지? 기본값은 false
-  - SERVER: 자신의 yona 서버 설치. 기본값은 데모차원에서 운영중인 repo.yona.io 서버
-  - USER_TOKEN: Yona v1.1 부터 지원하는 사용자 토큰. 개인 계정 설정페이지에서 확인가능
-  - OWNER_NAME:  owner 아이디나 그룹 이름
-  - PROJECT_NAME: 블로그 글을 옮겨 넣을 대상 프로젝트 이름
-  - ROOT_CONTEXT: 운영중인 Yona 서버에 application root를 설정한 경우
-
-
-예)
+config.json 예)
 ```
 export default {
   EXPORT_FILE_NAME: 'tistory-backup.xml',
@@ -72,6 +56,23 @@ export default {
 };
 
 ```
+
+
+- EXPORT_FILE_NAME: 티스토리에서 내려 받은 백업파일 이름
+- YOUR_TISTORY_URL: 티스토리 주소
+- YOUR_NAME: 티스토리에서 사용한 이름 (그냥 표시용이라 편하게 적어도 무방합니다)
+- HIDE_PRIVATE_POST: 발행(publishing)하지 않은 것은 그냥 숨겨 놓을 건지
+- EXPORT_BASE_DIR: 분해해 넣을 로컬 기본 폴더 
+- ATTACHMENTS_DIR: EXPORT_BASE_DIR 이하에 첨부파일들을 모아놓을 폴더이름
+
+- YONA 이하 항목등은 yona 설치한 사람들은 자신의 yona 서버로 이전가능하도록 해주는 기능
+  - DO_EXPORT: yona 서버로도 보낼건지? 기본값은 false
+  - SERVER: 자신의 yona 서버 설치. 기본값은 데모차원에서 운영중인 repo.yona.io 서버
+  - USER_TOKEN: Yona v1.1 부터 지원하는 사용자 토큰. 개인 계정 설정페이지에서 확인가능
+  - OWNER_NAME:  owner 아이디나 그룹 이름
+  - PROJECT_NAME: 블로그 글을 옮겨 넣을 대상 프로젝트 이름
+  - ROOT_CONTEXT: 운영중인 Yona 서버에 application root를 설정한 경우
+
 
 Github wiki로 이동하는 방법은 https://github.com/doortts/tistory-blog-export-example
 
