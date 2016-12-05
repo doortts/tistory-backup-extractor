@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   EXPORT_FILE_NAME: 'tistory-backup.xml',
   YOUR_TISTORY_URL: 'http://blog.doortts.com',
   YOUR_NAME: 'doortts',

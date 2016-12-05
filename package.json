@@ -1,8 +1,8 @@
 {
   "name": "tistory-backup-extractor",
-  "version": "0.8.1",
+  "version": "0.8.5",
   "description": "",
-  "main": "app/app.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/doortts/tistory-backup-extractor.git"
@@ -12,10 +12,12 @@
     "test": "mocha --compilers js:babel-register test/**/*.test.js",
     "test-watch": "npm test -- --watch",
     "lint": "eslint app test *.js",
-    "test-run": "babel-node --presets es2015 run.js"
+    "test-run": "babel-node --presets es2015 run.js",
+    "dist": "babel --presets es2015 app -d dist",
+    "prepublish": "npm run dist"
   },
   "keywords": [],
-  "author": "",
+  "author": "Suwon Chae",
   "license": "MIT",
   "dependencies": {
     "ascii-progress": "^1.0.5",
@@ -26,6 +28,7 @@
     "striptags": "^2.1.1",
     "to-markdown": "^3.0.3",
     "unirest": "^0.5.1",
+    "xml-stream": "^0.4.5",
     "xml2js": "^0.4.17"
   },
   "devDependencies": {
