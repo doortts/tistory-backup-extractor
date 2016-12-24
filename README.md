@@ -38,7 +38,7 @@ npm install
 
 - 위에서 설치한 tistory-backup-extractor 폴더에 있는 config.json 파일을 열어서 필요 항목을 수정합니다.
 
-config.json 항목 설명 (아래 내용을 복사해서 붙여넣지 마시고 직접 )
+config.json 항목 설명 (아래 내용을 복사해서 붙여넣지 마시고 파일을 직접 수정하세요)
 ```
 export default {
   EXPORT_FILE_NAME: 'tistory-backup.xml', //티스토리에서 내려 받은 백업파일 이름
