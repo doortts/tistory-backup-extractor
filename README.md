@@ -38,11 +38,11 @@ npm install
 
 - 위에서 설치한 tistory-backup-extractor 폴더에 있는 config.json 파일을 열어서 필요 항목을 수정합니다.
 
-config.json 예)
+config.json 항목 설정 (아래 내용을 복사해서 붙여넣지 마시고 직접 )
 ```
 export default {
   EXPORT_FILE_NAME: 'tistory-backup.xml', //티스토리에서 내려 받은 백업파일 이름
-  YOUR_TISTORY_URL: 'http://blog.doortts.com', //티스토리 주소
+  YOUR_TISTORY_URL: 'http://blog.doortts.com', //티스토리 주소
   YOUR_NAME: 'doortts',  //티스토리에서 사용한 이름 (그냥 표시용이라 실명이든 아이디든 편하게 적어도 무방합니다)
   HIDE_PRIVATE_POST: true, //발행(publishing)하지 않은 것은 그냥 숨겨 놓을 건지
   EXPORT_BASE_DIR: './blog', // 분해해 넣을 로컬 기본 폴더. 
