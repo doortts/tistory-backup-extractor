@@ -12,6 +12,4 @@ node_modules
 *.xml
 
 blog
-
-dist
 yarn.lock
