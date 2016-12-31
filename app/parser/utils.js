@@ -50,10 +50,12 @@ export const tistoryTagConverter = (tistoryTag, attachmentList) => {
 };
 
 export const attachmentWriter = (filename, base64Content, cb) => {
-  fs.outputFile(filename, new Buffer(base64Content, 'base64'), err => {
-    if (err) console.error(err);
-    if (typeof cb === 'function') return cb();
-  });
+  if (base64Content) {
+    fs.outputFile(filename, new Buffer(base64Content, 'base64'), err => {
+      if (err) console.error(err);
+      if (typeof cb === 'function') return cb();
+    });
+  }
 };
 
 export const lpadZero = (str, n) => (
